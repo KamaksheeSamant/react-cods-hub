@@ -1,5 +1,5 @@
 import Spinner from "@atlaskit/spinner";
-import { Stack } from "@atlaskit/primitives";
+import { Flex, Stack } from "@atlaskit/primitives";
 import PageHeader from "@atlaskit/page-header";
 import { AtlassianLogo } from "@atlaskit/logo";
 import Post from "../components/post";

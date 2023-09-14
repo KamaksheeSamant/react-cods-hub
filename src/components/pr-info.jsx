@@ -12,7 +12,7 @@ const PRInfo = ({ prInfo }) => {
     <Flex alignItems="center" xcss={flexStyle}>
       <TagGroup alignment="end">
         {prInfo.map(({ title, value }, index) => (
-          <SimpleTag key={index} text={`${title}: ${value}`} />
+          <SimpleTag key={index} text={`${title}${value}`} />
         ))}
       </TagGroup>
     </Flex>
