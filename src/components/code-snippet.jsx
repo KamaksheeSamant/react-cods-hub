@@ -22,10 +22,7 @@ const boxStyles = xcss({
 });
 const CodeSnippet = ({ code }) => {
   return (
-    <Flex
-      padding="space.050"
-      backgroundColor="color.background.discovery"
-    >
+    <Flex padding="space.050" backgroundColor="color.background.discovery">
       <CodeStyle>
         <Heading level="h500" xcss={headingStyles}>
           Before:
