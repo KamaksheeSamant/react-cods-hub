@@ -9,7 +9,7 @@ const Main = () => {
         try {
             setIsLoading(true);
             const posts = await Api.posts();
-            setPosts(posts.data);
+            setPosts(posts);
         } catch (e) {
             console.error("Error when fetching posts", e);
         } finally {

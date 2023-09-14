@@ -29,8 +29,8 @@ const CodeSnippet = ({ code }) => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={code.before}
-          highlight="2,5-7"// TODO: get this highlight line numbers
+          text={code.before.codeSnippet}
+          highlight={code.before.highlightedLines}
           shouldWrapLongLines={true}
         />
       </CodeStyle>
@@ -40,8 +40,8 @@ const CodeSnippet = ({ code }) => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={code.after}
-          highlight="2,5-7"// TODO: get this highlight line numbers
+          text={code.after.codeSnippet}
+          highlight={code.after.highlightedLines}
           shouldWrapLongLines={true}
         />
       </CodeStyle>

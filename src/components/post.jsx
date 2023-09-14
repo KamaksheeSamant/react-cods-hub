@@ -27,7 +27,7 @@ const ReactionsContainerStyles = xcss({
 });
 
 const Post = ({ post }) => {
-    const { tags, comments, reactions, code, authors } = post;
+    const { tags, comment, reactions, code, authors } = post;
     return (
         <Box xcss={containerStyles}>
             <Flex>
@@ -38,11 +38,7 @@ const Post = ({ post }) => {
             <Stack space="space.100">
                 <CodeSnippet code={code} />
 
-                {
-                    comments.map( comment =>
-                        <Comment key={comment.id} comment={comment} />
-                    )
-                }
+                <Comment key={comment.id} comment={comment} />
 
                 <Inline xcss={ReactionsContainerStyles}>
                     {
