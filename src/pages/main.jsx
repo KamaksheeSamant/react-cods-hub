@@ -1,4 +1,6 @@
 import Spinner from "@atlaskit/spinner";
+import { Stack } from "@atlaskit/primitives";
+import PageHeader from "@atlaskit/page-header";
 import Post from "../components/post";
 import { useEffect, useState } from "react";
 import Api from "../api";
@@ -12,37 +14,38 @@ const LoaderWrapper = styled.div`
   width: 100%;
 `;
 const Main = () => {
-    const [ isLoading, setIsLoading ] = useState(false);
-    const [ posts, setPosts ] = useState([]);
-    const fetchPosts = async () => {
-        try {
-            setIsLoading(true);
-            const posts = await Api.posts();
-            setPosts(posts);
-        } catch (e) {
-            console.error("Error when fetching posts", e);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  const [isLoading, setIsLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const fetchPosts = async () => {
+    try {
+      setIsLoading(true);
+      const posts = await Api.posts();
+      setPosts(posts);
+    } catch (e) {
+      console.error("Error when fetching posts", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
-    <div>
-      {isLoading  ? (
+    <Stack alignInline="center">
+      {isLoading ? (
         <LoaderWrapper>
           <Spinner size={"xlarge"} />
         </LoaderWrapper>
       ) : (
         <>
+          <PageHeader>Clean Coding Standards Hub</PageHeader>
           {posts?.length &&
             posts.map((post) => <Post key={post.id} post={post} />)}
         </>
       )}
-    </div>
+    </Stack>
   );
 };
 
