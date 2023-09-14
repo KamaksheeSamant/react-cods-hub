@@ -79,6 +79,7 @@ const getCode = (language, isBefore) => {
 const Posts = async () => {
   try {
     const response = await axios.get(URL);
+    console.log(JSON.parse(response.data.body));
     return modifyResponse(JSON.parse(response.data.body));
   } catch (e) {
     throw e;
@@ -104,9 +105,10 @@ const modifyResponse = (data) => {
       content:
         "The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?",
     },
-    authors: [
-        { title: "PR Author", name: datum.prAuthor },
-        { title: "Comment Author", name: datum.commentAuthor },
+    prInfo: [
+      { title: "PR Repository ID", value: datum.repositoryId },
+      { title: "PR Author", value: datum.prAuthor },
+      { title: "Comment Author", value: datum.commentAuthor },
     ],
     tags: [datum.sourceLangauage],
     reactions: [

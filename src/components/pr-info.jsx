@@ -1,5 +1,5 @@
-import { Flex, xcss } from "@atlaskit/primitives";
 import { SimpleTag } from "@atlaskit/tag";
+import { Flex, xcss } from "@atlaskit/primitives";
 import TagGroup from "@atlaskit/tag-group";
 
 const flexStyle = xcss({
@@ -7,17 +7,16 @@ const flexStyle = xcss({
   flex: 1,
 });
 
-const Tags = ({ tags }) => {
+const PRInfo = ({ prInfo }) => {
   return (
     <Flex alignItems="center" xcss={flexStyle}>
-      <span>Tags: </span>
-      <TagGroup alignment="start">
-        {tags.map((tag, index) => (
-          <SimpleTag key={index} text={tag} />
+      <TagGroup alignment="end">
+        {prInfo.map(({ title, value }, index) => (
+          <SimpleTag key={index} text={`${title}: ${value}`} />
         ))}
       </TagGroup>
     </Flex>
   );
 };
 
-export default Tags;
+export default PRInfo;

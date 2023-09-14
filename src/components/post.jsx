@@ -3,7 +3,7 @@ import CodeSnippet from "./code-snippet";
 import Comment from "./comment";
 import Reaction from "./reaction";
 import Tags from "./tags";
-import PRAuthors from "./pr-authors";
+import PRInfo from "./pr-info";
 
 const containerStyles = xcss({
   width: "80%",
@@ -29,12 +29,12 @@ const ReactionsContainerStyles = xcss({
 });
 
 const Post = ({ post }) => {
-  const { tags, comment, reactions, code, authors } = post;
+  const { tags, comment, reactions, code, prInfo } = post;
   return (
     <Box xcss={containerStyles}>
       <Flex>
         <Tags tags={tags} />
-        <PRAuthors authors={authors} />
+        <PRInfo prInfo={prInfo} />
       </Flex>
 
       <Stack space="space.100">
