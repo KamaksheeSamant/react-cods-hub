@@ -1,6 +1,7 @@
 import Spinner from "@atlaskit/spinner";
 import { Stack } from "@atlaskit/primitives";
 import PageHeader from "@atlaskit/page-header";
+import { AtlassianLogo } from '@atlaskit/logo';
 import Post from "../components/post";
 import { useEffect, useState } from "react";
 import Api from "../api";
@@ -40,6 +41,7 @@ const Main = () => {
         </LoaderWrapper>
       ) : (
         <>
+          <AtlassianLogo appearance="brand" />
           <PageHeader>Clean Coding Standards Hub</PageHeader>
           {posts?.length &&
             posts.map((post) => <Post key={post.id} post={post} />)}
