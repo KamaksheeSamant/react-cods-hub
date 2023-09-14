@@ -1,32 +1,56 @@
+import { Flex, Box, xcss, Stack, Inline } from "@atlaskit/primitives";
+
 import CodeSnippet from "./code-snippet";
 import Comment from "./comment";
 import Reaction from "./reaction";
+import Tags from "./tags";
 
-// TODO: change this styling later
-const PostWrapper = ({
-    padding: 14,
-    margin: 8,
-    border: "1px solid black",
+const containerStyles = xcss({
+  display: "flex",
+  flexDirection: "column",
+  backgroundColor: "elevation.surface.raised",
+  padding: "space.150",
+  margin: "space.1000",
+  transition: "200ms",
+  borderRadius: "border.radius.100",
+  boxShadow: "elevation.shadow.raised",
+  ":hover": {
+    backgroundColor: "elevation.surface.hovered",
+  },
+});
+
+const ReactionsContainerStyles = xcss({
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
 });
 
 const Post = ({ post }) => {
-    const { tags, code, comments, reactions } = post;
+    const { tags, comments, reactions, code } = post;
     return (
-        <div style={PostWrapper}>
-            {
-                tags.map((tag, index) =>
-                    <span key={index}>{tag}</span>
-                )
-            }
-            <CodeSnippet code={code} />
-            {
-                comments.map(comment => <Comment key={comment.id} comment={comment} />)
-            }
+        <Box xcss={containerStyles}>
+            <Flex>
+                <Tags tags={tags} />
+            </Flex>
 
-            {
-                reactions.map(reaction => <Reaction key={reaction.id} reaction={reaction} />)
-            }
-        </div>
+            <Stack space="space.100">
+                <CodeSnippet code={code} />
+
+                {
+                    comments.map( comment =>
+                        <Comment key={comment.id} comment={comment} />
+                    )
+                }
+
+                <Inline xcss={ReactionsContainerStyles}>
+                    {
+                        reactions.map( reaction =>
+                            <Reaction key={reaction.id} reaction={reaction} />
+                        )
+                    }
+                </Inline>
+            </Stack>
+        </Box>
     );
 };
 

@@ -27,8 +27,6 @@ const Main = () => {
                 isLoading ?
                     <div>Loading</div> :
                     <>
-                        <div>This is the main page.</div>
-                        <div>Here are the posts:</div>
                         {
                             posts?.length && posts.map( post =>
                                 <Post key={post.id} post={post}/> )

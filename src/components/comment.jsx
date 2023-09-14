@@ -1,12 +1,14 @@
+import { Box } from "@atlaskit/primitives";
+import Comment from "@atlaskit/comment";
 
-const Comment = ({ comment }) => {
-    const { id, content } = comment;
-    return (
-        <>
-            <div>ID: {id}</div>
-            <div>Content: {content}</div>
-        </>
-    )
+const PostComment = ({ comment }) => {
+  const { content } = comment;
+
+  return (
+    <Box as="span">
+      <Comment content={content} />
+    </Box>
+  );
 };
 
-export default Comment;
+export default PostComment;

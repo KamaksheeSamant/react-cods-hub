@@ -9,8 +9,16 @@ const Posts = async () => {
                 id: 1,
                 title: "First Post",
                 code: {
-                    before: "Before Code",
-                    after: "After Code",
+                    before: "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
+                        "  return  questionIds.stream()\n" +
+                        "          .filter(questionId -> questionOverrides.stream().noneMatch(questionOverride -> questionId.equals(questionOverride))\n" +
+                        "          .collect(Collectors.toList());\n" +
+                        "}",
+                    after: "private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {\n" +
+                        "  return  questionIds.stream()\n" +
+                        "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
+                        "          .collect(Collectors.toList());\n" +
+                        "}",
                 },
                 tags: [ "tag-1", "tag-2", "tag-3" ],
                 comments: [
@@ -22,12 +30,12 @@ const Posts = async () => {
                 reactions: [
                     {
                         id: 1,
-                        icon: "like",
+                        title: "like",
                         quantity: 3
                     },
                     {
                         id: 2,
-                        icon: "dislike",
+                        title: "dislike",
                         quantity: 0
                     }
                 ]
@@ -49,13 +57,23 @@ const Posts = async () => {
                 reactions: [
                     {
                         id: 1,
-                        icon: "like",
+                        title: "like",
                         quantity: 0
                     },
                     {
                         id: 2,
-                        icon: "dislike",
+                        title: "dislike",
                         quantity: 4
+                    },
+                    {
+                        id: 3,
+                        title: "discard",
+                        quantity: 0
+                    },
+                    {
+                        id: 4,
+                        title: "discuss",
+                        quantity: 1
                     }
                 ]
             }
