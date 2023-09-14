@@ -30,8 +30,8 @@ const Main = () => {
                         <div>This is the main page.</div>
                         <div>Here are the posts:</div>
                         {
-                            posts && posts.length && posts.map( post =>
-                                <Post post={post}/> )
+                            posts?.length && posts.map( post =>
+                                <Post key={post.id} post={post}/> )
                         }
                     </>
             }

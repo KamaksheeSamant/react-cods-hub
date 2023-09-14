@@ -14,17 +14,17 @@ const Post = ({ post }) => {
     return (
         <div style={PostWrapper}>
             {
-                tags.map(tag =>
-                    <span>{tag}</span>
+                tags.map((tag, index) =>
+                    <span key={index}>{tag}</span>
                 )
             }
             <CodeSnippet code={code} />
             {
-                comments.map(comment => <Comment comment={comment} />)
+                comments.map(comment => <Comment key={comment.id} comment={comment} />)
             }
 
             {
-                reactions.map(reaction => <Reaction reaction={reaction} />)
+                reactions.map(reaction => <Reaction key={reaction.id} reaction={reaction} />)
             }
         </div>
     );
