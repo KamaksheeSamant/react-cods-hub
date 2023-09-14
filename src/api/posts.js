@@ -79,7 +79,7 @@ const getCode = (language, isBefore) => {
 const Posts = async () => {
     try {
         const response = await axios.get(URL);
-        return modifyResponse(JSON.parse(response.body));
+        return modifyResponse(JSON.parse(response.data.body));
     } catch (e) {
        throw e;
     }
