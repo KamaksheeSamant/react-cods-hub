@@ -1,35 +1,25 @@
-// TODO: add actual API
-const Posts = async () => {
-    // TODO: remove this delay later
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const data = [
-        {
-            beforeCommitId: 1,
-            beforeCommitCode: "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
+import axios from "axios";
+
+const URL = "https://b9cga2q1z9.execute-api.ap-southeast-2.amazonaws.com/staging/cods";
+
+// TODO: Get actual code data later
+const getCode = (language, isBefore) => {
+    switch (language) {
+        case "java":
+            return isBefore ?
+                "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
                 "  return  questionIds.stream()\n" +
                 "          .filter(questionId -> questionOverrides.stream().noneMatch(questionOverride -> questionId.equals(questionOverride))\n" +
                 "          .collect(Collectors.toList());\n" +
-                "}",
-            afterCommitCode: "private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {\n" +
+                "}" :
+                "private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {\n" +
                 "  return  questionIds.stream()\n" +
                 "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
                 "          .collect(Collectors.toList());\n" +
-                "}",
-            afterCommitId: 2,
-            commentId: 1,
-            beforeLineNum: "2,5",
-            prId: 1,
-            afterLineNum: "2,5",
-            prAuthor: ["PR Author"],
-            commentAuthor: ["Comment Author"],
-            codsUUId: "abcd-123-xyz",
-            codsCreationDate: 123123,
-            repositoryId: 12213,
-            sourceLanguage: "Java"
-        },
-        {
-            beforeCommitId: 11,
-            beforeCommitCode: "for i, comment := range comments {\n" +
+                "}";
+        case "python":
+            return isBefore ?
+                "for i, comment := range comments {\n" +
                 "\t\tvar userMeta *db.AtlassianOrgUser\n" +
                 "\t\tuser, exist := usersLookup[comment.UserID]" +
                 "if !exist {\n" +
@@ -47,8 +37,8 @@ const Posts = async () => {
                 "\t\t\tReportComment: comment,\n" +
                 "\t\t\tUserMeta:      userMeta,\n" +
                 "\t\t}\n" +
-                "\t}",
-            afterCommitCode: "for i, comment := range comments {\n" +
+                "\t}" :
+                "for i, comment := range comments {\n" +
                 "\t\tvar userMeta *db.AtlassianOrgUser\n" +
                 "\t\tuser, exist := usersLookup[comment.UserID]" +
                 "if !exist {\n" +
@@ -66,45 +56,33 @@ const Posts = async () => {
                 "\t\t\tReportComment: comment,\n" +
                 "\t\t\tUserMeta:      userMeta,\n" +
                 "\t\t}\n" +
-                "\t}",
-            afterCommitId: 21,
-            commentId: 11,
-            beforeLineNum: "1,3",
-            prId: 11,
-            afterLineNum: "1,3",
-            prAuthor: ["PR Author 1"],
-            commentAuthor: ["Comment Author 1"],
-            codsUUId: "abcd-123-xyz1",
-            codsCreationDate: 1231231,
-            repositoryId: 122131,
-            sourceLanguage: "go"
-        },
-        {
-            beforeCommitId: 12,
-            beforeCommitCode: "numberOfSyncedRepos === totalNumberOfRepos \n" +
+                "\t}";
+        case "ruby":
+            return isBefore ? "before" : "after";
+        case "c#":
+            return isBefore ? "before" : "after";
+        case "javascript":
+            return isBefore ?
+                "numberOfSyncedRepos === totalNumberOfRepos \n" +
                 "  ? totalNumberOfRepos \n" +
-                "  : (totalNumberOfRepos ? `${numberOfSyncedRepos} / ${totalNumberOfRepos}` : \"\");",
-            afterCommitCode: "if (!totalNumberOfRepos) return \"\";// If the total number of repos is 0, then show nothing\n" +
+                "  : (totalNumberOfRepos ? `${numberOfSyncedRepos} / ${totalNumberOfRepos}` : \"\");:" :
+                "if (!totalNumberOfRepos) return \"\";// If the total number of repos is 0, then show nothing\n" +
                 "if (numberOfSyncedRepos === totalNumberOfRepos) {\n" +
                 "  return totalNumberOfRepos;\n" +
                 "} else {\n" +
                 "  return `${numberOfSyncedRepos} / ${totalNumberOfRepos}`;\n" +
-                "}",
-            afterCommitId: 22,
-            commentId: 12,
-            beforeLineNum: "1,2,3",
-            prId: 12,
-            afterLineNum: "1,2,3,4,5,6",
-            prAuthor: ["PR Author 2"],
-            commentAuthor: ["Comment Author 2"],
-            codsUUId: "abcd-123-xyz2",
-            codsCreationDate: 1231232,
-            repositoryId: 122132,
-            sourceLanguage: "javascript"
-        }
-    ];
+                "}";
 
-    return modifyResponse(data);
+    }
+}
+
+const Posts = async () => {
+    try {
+        const response = await axios.get(URL);
+        return modifyResponse(JSON.parse(response.body));
+    } catch (e) {
+       throw e;
+    }
 };
 
 const modifyResponse = (data) => {
@@ -125,7 +103,7 @@ const modifyResponse = (data) => {
             id: datum.commentId,
             content: "PR Comment: The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?"
         },
-        authors: [ ...datum.prAuthor, ...datum.commentAuthor],
+        authors: [ datum.prAuthor, ...datum.commentAuthor],
         tags: [ datum.sourceLanguage ],
         reactions: [
             {
