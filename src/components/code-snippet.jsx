@@ -3,21 +3,20 @@ import { Flex, xcss } from "@atlaskit/primitives";
 import Heading from "@atlaskit/heading";
 import styled from "styled-components";
 
-const exampleCodeBlock = `class HelloMessage extends React.Component {
-    import { Box } from '@atlaskit/primitives'
-
-    render() {
-      return (
-        <Box>
-          Hello {this.props.name}
-        </Box>
-      );
-    }
-  }
-  ReactDOM.render(
-    <HelloMessage name="Taylor" />,
-    mountNode
-  );`;
+const beforeCodeBlock = `
+private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {
+  return  questionIds.stream()
+          .filter(questionId -> questionOverrides.stream().noneMatch(questionOverride -> questionId.equals(questionOverride))
+          .collect(Collectors.toList());
+}
+`;
+const afterCodeBlock = `
+private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {
+  return  questionIds.stream()
+          .filter(questionId -> !questionOverrides.contains(questionId))
+          .collect(Collectors.toList());
+}
+`;
 
 const CodeStyle = styled.div`
   flex: 1;
@@ -28,28 +27,25 @@ const headingStyles = xcss({
   marginBlock: "space.050",
 });
 
-const boxStyles = xcss({
-  display: "flex",
-  justifyContent: "space-between",
-  borderColor: "color.border.discovery",
-  borderStyle: "solid",
-  borderRadius: "border.radius",
-  borderWidth: "border.width",
-});
+// const boxStyles = xcss({
+//   display: "flex",
+//   justifyContent: "space-between",
+//   borderColor: "color.border.discovery",
+//   borderStyle: "solid",
+//   borderRadius: "border.radius",
+//   borderWidth: "border.width",
+// });
 const CodeSnippet = () => {
   return (
-    <Flex
-      padding="space.050"
-      backgroundColor="color.background.discovery"
-    >
+    <Flex padding="space.050" backgroundColor="color.background.discovery">
       <CodeStyle>
         <Heading level="h500" xcss={headingStyles}>
           Before:
         </Heading>
         <CodeBlock
           language="jsx"
-          text={exampleCodeBlock}
-          highlight="2,5-7"
+          text={beforeCodeBlock}
+          highlight="3-4"
           shouldWrapLongLines={true}
         />
       </CodeStyle>
@@ -59,8 +55,8 @@ const CodeSnippet = () => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={exampleCodeBlock}
-          highlight="2,5-7"
+          text={afterCodeBlock}
+          highlight="3-4"
           shouldWrapLongLines={true}
         />
       </CodeStyle>
