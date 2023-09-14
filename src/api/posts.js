@@ -91,19 +91,19 @@ const modifyResponse = (data) => {
             before: {
                 id: datum.beforeCommitId,
                 highlightedLines: datum.beforeLineNum,
-                codeSnippet: datum.beforeCommitCode
+                codeSnippet: getCode(datum.sourceLangauage)
             },
             after: {
                 id: datum.afterCommitId,
                 highlightedLines: datum.afterLineNum,
-                codeSnippet: datum.afterCommitCode
+                codeSnippet: getCode(datum.sourceLangauage)
             }
         },
         comment: {
             id: datum.commentId,
             content: "PR Comment: The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?"
         },
-        authors: [ datum.prAuthor, ...datum.commentAuthor],
+        authors: [ datum.prAuthor, datum.commentAuthor],
         tags: [ datum.sourceLanguage ],
         reactions: [
             {
