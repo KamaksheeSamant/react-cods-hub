@@ -1,10 +1,11 @@
 import { Flex, Box, xcss, Stack, Inline } from "@atlaskit/primitives";
-import { SimpleTag } from "@atlaskit/tag";
-import TagGroup from "@atlaskit/tag-group";
+// import { SimpleTag } from "@atlaskit/tag";
+// import TagGroup from "@atlaskit/tag-group";
 import CodeSnippet from "./code-snippet";
 import Comment from "./comment";
 import Reaction from "./reaction";
 import Tags from "./tags";
+import PRAuthors from "./pr-authors";
 
 const containerStyles = xcss({
   display: "flex",
@@ -27,23 +28,18 @@ const ReactionsContainerStyles = xcss({
 });
 
 const Post = ({ post }) => {
-  const { tags, comments, reactions, code, prAuthor, commentAuthor } = post;
-  return (
-    <Box xcss={containerStyles}>
-      <Flex>
-        <Tags tags={tags} />
-        <TagGroup alignment="end">
-          <SimpleTag text={`PR Author: ${prAuthor}`} />
-          <SimpleTag text={`Comment Author: ${commentAuthor}`}  />
-        </TagGroup>
-      </Flex>
+    const { tags, comment, reactions, code, authors } = post;
+    return (
+        <Box xcss={containerStyles}>
+            <Flex>
+                <Tags tags={tags} />
+                <PRAuthors authors={authors} />
+            </Flex>
 
       <Stack space="space.100">
         <CodeSnippet code={code} />
 
-        {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
+        <Comment key={comment.id} comment={comment} />
 
         <Inline xcss={ReactionsContainerStyles}>
           {reactions.map((reaction) => (

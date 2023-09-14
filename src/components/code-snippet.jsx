@@ -12,7 +12,6 @@ const headingStyles = xcss({
   marginBlock: "space.050",
 });
 
-
 const CodeSnippet = ({ code }) => {
   return (
     <Flex padding="space.050" backgroundColor="color.background.discovery">
@@ -22,8 +21,8 @@ const CodeSnippet = ({ code }) => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={code.before}
-          highlight="2"// TODO: get this highlight line numbers
+          text={code.before.codeSnippet}
+          highlight={code.before.highlightedLines}
           shouldWrapLongLines={true}
         />
       </CodeStyle>
@@ -33,8 +32,8 @@ const CodeSnippet = ({ code }) => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={code.after}
-          highlight="2"// TODO: get this highlight line numbers
+          text={code.after.codeSnippet}
+          highlight={code.after.highlightedLines}
           shouldWrapLongLines={true}
         />
       </CodeStyle>

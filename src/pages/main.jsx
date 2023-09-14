@@ -12,19 +12,19 @@ const LoaderWrapper = styled.div`
   width: 100%;
 `;
 const Main = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const fetchPosts = async () => {
-    try {
-      setIsLoading(true);
-      const posts = await Api.posts();
-      setPosts(posts.data);
-    } catch (e) {
-      console.error("Error when fetching posts", e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ posts, setPosts ] = useState([]);
+    const fetchPosts = async () => {
+        try {
+            setIsLoading(true);
+            const posts = await Api.posts();
+            setPosts(posts);
+        } catch (e) {
+            console.error("Error when fetching posts", e);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
   useEffect(() => {
     fetchPosts();
