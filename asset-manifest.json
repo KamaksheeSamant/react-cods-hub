@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/react-cods-hub/static/js/main.04c5b271.js",
+    "@atlaskit-internal_refractor-import.js": "/react-cods-hub/static/js/@atlaskit-internal_refractor-import.a6eeef61.chunk.js",
+    "index.html": "/react-cods-hub/index.html",
+    "main.04c5b271.js.map": "/react-cods-hub/static/js/main.04c5b271.js.map",
+    "@atlaskit-internal_refractor-import.a6eeef61.chunk.js.map": "/react-cods-hub/static/js/@atlaskit-internal_refractor-import.a6eeef61.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.04c5b271.js"
+  ]
+}
