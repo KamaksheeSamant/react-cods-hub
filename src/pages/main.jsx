@@ -1,11 +1,18 @@
 import Spinner from "@atlaskit/spinner";
 import { Stack } from "@atlaskit/primitives";
 import PageHeader from "@atlaskit/page-header";
-import { AtlassianLogo } from '@atlaskit/logo';
+import { AtlassianLogo } from "@atlaskit/logo";
 import Post from "../components/post";
 import { useEffect, useState } from "react";
 import Api from "../api";
 import { styled } from "styled-components";
+
+const PageHeaderWrapper = styled(PageHeader)`
+  & div > div > div > h1 {
+    color: blue;
+    font-size: 24px;
+  }
+`;
 
 const LoaderWrapper = styled.div`
   display: flex;
@@ -42,7 +49,7 @@ const Main = () => {
       ) : (
         <>
           <AtlassianLogo appearance="brand" />
-          <PageHeader>Clean Coding Standards Hub</PageHeader>
+          <PageHeaderWrapper>Clean Coding Standards Hub</PageHeaderWrapper>
           {posts?.length &&
             posts.map((post) => <Post key={post.id} post={post} />)}
         </>
