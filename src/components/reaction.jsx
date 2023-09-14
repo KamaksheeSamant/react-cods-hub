@@ -7,15 +7,23 @@ import {GoCommentDiscussion} from "react-icons/go";
 
 const ReactionWrapper = styled.div`
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
-  margin-right: 15px;
+  margin-right: 26px;
+  position: relative;
 `;
 
 const iconStyles = {
     height: "25px",
     width: "25px",
     color: "#5E6C84",
+};
+
+const badgeStyles = {
+    position: "absolute",
+    right: -15,
+    top: 12
 };
 
 const getIcon = (title) => {
@@ -38,9 +46,11 @@ const Reaction = ({ reaction }) => {
         <>
             <ReactionWrapper>
                 {getIcon(title)}
-                {
-                    <Badge appearance="primary">{quantity}</Badge>
-                }
+                <span style={badgeStyles}>
+                    {
+                        <Badge appearance="primary">{quantity}</Badge>
+                    }
+                </span>
             </ReactionWrapper>
         </>
     );
