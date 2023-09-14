@@ -5,8 +5,8 @@ const PRAuthors = ({ authors }) => {
   return (
       <TagGroup alignment="end">
           {
-              authors.map( (author, index) =>
-                  <SimpleTag key={index} text={author} />
+              authors.map( ({title, name}, index) =>
+                  <SimpleTag key={index} text={`${title}: ${name}`} />
               )
           }
       </TagGroup>
