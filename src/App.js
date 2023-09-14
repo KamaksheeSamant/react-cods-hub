@@ -1,14 +1,14 @@
 import React from "react";
 
-import Avatar from "@atlaskit/avatar";
-import Heading from "@atlaskit/heading";
+// import Avatar from "@atlaskit/avatar";
+// import Heading from "@atlaskit/heading";
 import Tag from "@atlaskit/tag";
 import TagGroup from "@atlaskit/tag-group";
-import BitbucketPullrequestsIcon from "@atlaskit/icon/glyph/bitbucket/pullrequests";
-import MoreIcon from "@atlaskit/icon/glyph/more";
-import { AtlassianIcon } from "@atlaskit/logo";
-import Lozenge from "@atlaskit/lozenge";
-import { Box, Inline, Stack, xcss } from "@atlaskit/primitives";
+// import BitbucketPullrequestsIcon from "@atlaskit/icon/glyph/bitbucket/pullrequests";
+// import MoreIcon from "@atlaskit/icon/glyph/more";
+// import { AtlassianIcon } from "@atlaskit/logo";
+// import Lozenge from "@atlaskit/lozenge";
+import { Box, Stack, xcss } from "@atlaskit/primitives";
 import { CodeBlock } from "@atlaskit/code";
 import styled from "styled-components";
 
@@ -43,16 +43,16 @@ const containerStyles = xcss({
   },
 });
 
-const inlineStyles = xcss({
-  display: "flex",
-  alignItems: "center",
-});
+// const inlineStyles = xcss({
+//   display: "flex",
+//   alignItems: "center",
+// });
 
-const extraInfoStyles = xcss({
-  display: "flex",
-  justifyContent: "space-between",
-  paddingBlock: "space.050",
-});
+// const extraInfoStyles = xcss({
+//   display: "flex",
+//   justifyContent: "space-between",
+//   paddingBlock: "space.050",
+// });
 
 const boxStyles = xcss({
   display: "flex",
@@ -112,7 +112,7 @@ export default function App() {
           Dropdown menu items in Modal are not accessible to keyboard/screen
           readers in Safari
         </Box>
-        <Box as="span">
+        {/* <Box as="span">
           <Lozenge appearance="new">Accelerate Cloud Accessibility</Lozenge>
         </Box>
         <Box xcss={extraInfoStyles}>
@@ -125,7 +125,7 @@ export default function App() {
             <MoreIcon size="small" label="" />
             <Avatar size="small" />
           </Inline>
-        </Box>
+        </Box> */}
       </Stack>
     </Box>
   );
