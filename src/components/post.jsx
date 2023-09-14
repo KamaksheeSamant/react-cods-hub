@@ -6,12 +6,15 @@ import Tags from "./tags";
 import PRAuthors from "./pr-authors";
 
 const containerStyles = xcss({
+  width: "80%",
   display: "flex",
   flexDirection: "column",
   backgroundColor: "elevation.surface.raised",
+  borderStyle: 'solid',
   padding: "space.200",
   margin: "space.200",
   transition: "200ms",
+  borderColor: "color.border.accent.gray",
   borderRadius: "border.radius.200",
   boxShadow: "elevation.shadow.raised",
   ":hover": {
@@ -37,9 +40,7 @@ const Post = ({ post }) => {
 
       <Stack space="space.100">
         <Comment key={comment.id} comment={comment} />
-
         <CodeSnippet code={code} />
-
         <Inline xcss={ReactionsContainerStyles}>
           {reactions.map((reaction) => (
             <Reaction key={reaction.id} reaction={reaction} />

@@ -79,7 +79,7 @@ const getCode = (language, isBefore) => {
 const Posts = async () => {
     try {
         const response = await axios.get(URL);
-        return modifyResponse(JSON.parse(response.data.body));
+        return modifyResponse(JSON.parse(response.body));
     } catch (e) {
        throw e;
     }
@@ -91,12 +91,12 @@ const modifyResponse = (data) => {
             before: {
                 id: datum.beforeCommitId,
                 highlightedLines: datum.beforeLineNum,
-                codeSnippet: getCode(datum.sourceLangauage)
+                codeSnippet: datum.beforeCommitCode
             },
             after: {
                 id: datum.afterCommitId,
                 highlightedLines: datum.afterLineNum,
-                codeSnippet: getCode(datum.sourceLangauage)
+                codeSnippet: datum.afterCommitCode
             }
         },
         comment: {
@@ -119,7 +119,6 @@ const modifyResponse = (data) => {
             {
                 id: 3,
                 title: "discard",
-                quantity: 0
             },
             {
                 id: 4,

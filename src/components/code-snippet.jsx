@@ -8,6 +8,10 @@ const CodeStyle = styled.div`
   padding: 5px;
 `;
 
+const ok = xcss({
+  maxHeight: 'space.300',
+})
+
 const headingStyles = xcss({
   marginBlock: "space.050",
 });
@@ -20,6 +24,7 @@ const CodeSnippet = ({ code }) => {
           Before:
         </Heading>
         <CodeBlock
+          xcss={ok}
           language="jsx"
           text={code.before.codeSnippet}
           highlight={code.before.highlightedLines}
@@ -31,6 +36,7 @@ const CodeSnippet = ({ code }) => {
           After:
         </Heading>
         <CodeBlock
+          xcss={ok}
           language="jsx"
           text={code.after.codeSnippet}
           highlight={code.after.highlightedLines}
