@@ -13,6 +13,7 @@
     "@atlaskit/icon": "21.12.7",
     "@atlaskit/logo": "13.14.8",
     "@atlaskit/lozenge": "11.4.4",
+    "@atlaskit/page-header": "^10.4.4",
     "@atlaskit/primitives": "^1.5.0",
     "@atlaskit/tag": "*",
     "@atlaskit/tag-group": "10.2.5",
