@@ -1,8 +1,8 @@
-import { Box, xcss, Stack } from "@atlaskit/primitives";
+import { Flex, Box, xcss, Stack, Inline } from "@atlaskit/primitives";
 
 import CodeSnippet from "./code-snippet";
 import Comment from "./comment";
-import Reactions from "./reactions";
+import Reaction from "./reaction";
 import Tags from "./tags";
 
 const containerStyles = xcss({
@@ -18,17 +18,40 @@ const containerStyles = xcss({
     backgroundColor: "elevation.surface.hovered",
   },
 });
-const Post = () => {
-  return (
-    <Box xcss={containerStyles}>
-      <Tags />
-      <Stack space="space.100">
-        <CodeSnippet />
-        <Comment />
-        <Reactions />
-      </Stack>
-    </Box>
-  );
+
+const ReactionsContainerStyles = xcss({
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+});
+
+const Post = ({ post }) => {
+    const { tags, comments, reactions, code } = post;
+    return (
+        <Box xcss={containerStyles}>
+            <Flex>
+                <Tags tags={tags} />
+            </Flex>
+
+            <Stack space="space.100">
+                <CodeSnippet code={code} />
+
+                {
+                    comments.map( comment =>
+                        <Comment key={comment.id} comment={comment} />
+                    )
+                }
+
+                <Inline xcss={ReactionsContainerStyles}>
+                    {
+                        reactions.map( reaction =>
+                            <Reaction key={reaction.id} reaction={reaction} />
+                        )
+                    }
+                </Inline>
+            </Stack>
+        </Box>
+    );
 };
 
 export default Post;

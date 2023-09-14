@@ -3,22 +3,6 @@ import { Flex, xcss } from "@atlaskit/primitives";
 import Heading from "@atlaskit/heading";
 import styled from "styled-components";
 
-const exampleCodeBlock = `class HelloMessage extends React.Component {
-    import { Box } from '@atlaskit/primitives'
-
-    render() {
-      return (
-        <Box>
-          Hello {this.props.name}
-        </Box>
-      );
-    }
-  }
-  ReactDOM.render(
-    <HelloMessage name="Taylor" />,
-    mountNode
-  );`;
-
 const CodeStyle = styled.div`
   flex: 1;
   padding: 5px;
@@ -36,7 +20,7 @@ const boxStyles = xcss({
   borderRadius: "border.radius",
   borderWidth: "border.width",
 });
-const CodeSnippet = () => {
+const CodeSnippet = ({ code }) => {
   return (
     <Flex
       padding="space.050"
@@ -48,8 +32,8 @@ const CodeSnippet = () => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={exampleCodeBlock}
-          highlight="2,5-7"
+          text={code.before}
+          highlight="2,5-7"// TODO: get this highlight line numbers
           shouldWrapLongLines={true}
         />
       </CodeStyle>
@@ -59,8 +43,8 @@ const CodeSnippet = () => {
         </Heading>
         <CodeBlock
           language="jsx"
-          text={exampleCodeBlock}
-          highlight="2,5-7"
+          text={code.after}
+          highlight="2,5-7"// TODO: get this highlight line numbers
           shouldWrapLongLines={true}
         />
       </CodeStyle>

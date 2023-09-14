@@ -1,21 +1,15 @@
 import { SimpleTag } from "@atlaskit/tag";
 import TagGroup from "@atlaskit/tag-group";
-import { Flex } from "@atlaskit/primitives";
 
-const Tags = () => {
+const Tags = ({ tags }) => {
   return (
-    <Flex>
       <TagGroup alignment="start">
-        <SimpleTag text="TypeScript" />
-        <SimpleTag text="Organisation" />
-        <SimpleTag text="Containerization" />
-        <SimpleTag text="Avoid Vulnerable Code" />
+          {
+              tags.map( (tag, index) =>
+                  <SimpleTag key={index} text={tag} />
+              )
+          }
       </TagGroup>
-      <TagGroup alignment="end">
-        <SimpleTag text="PR Author: Scott Farquhar" />
-        <SimpleTag text="Comment Author: Kamakshee Samant" />
-      </TagGroup>
-    </Flex>
   );
 };
 
