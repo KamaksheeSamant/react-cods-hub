@@ -12,14 +12,6 @@ const headingStyles = xcss({
   marginBlock: "space.050",
 });
 
-const boxStyles = xcss({
-  display: "flex",
-  justifyContent: "space-between",
-  borderColor: "color.border.discovery",
-  borderStyle: "solid",
-  borderRadius: "border.radius",
-  borderWidth: "border.width",
-});
 const CodeSnippet = ({ code }) => {
   return (
     <Flex padding="space.050" backgroundColor="color.background.discovery">
