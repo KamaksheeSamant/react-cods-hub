@@ -17,6 +17,7 @@ const LoaderWrapper = styled.div`
 
 const Wrapper = styled.div`
   background: #deebff;
+  padding-top: 24px;
 `;
 
 const Main = () => {
