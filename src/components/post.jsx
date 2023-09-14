@@ -4,6 +4,7 @@ import CodeSnippet from "./code-snippet";
 import Comment from "./comment";
 import Reaction from "./reaction";
 import Tags from "./tags";
+import PRAuthors from "./pr-authors";
 
 const containerStyles = xcss({
   display: "flex",
@@ -26,11 +27,12 @@ const ReactionsContainerStyles = xcss({
 });
 
 const Post = ({ post }) => {
-    const { tags, comments, reactions, code } = post;
+    const { tags, comments, reactions, code, authors } = post;
     return (
         <Box xcss={containerStyles}>
             <Flex>
                 <Tags tags={tags} />
+                <PRAuthors authors={authors} />
             </Flex>
 
             <Stack space="space.100">

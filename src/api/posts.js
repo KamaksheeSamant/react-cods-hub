@@ -21,6 +21,7 @@ const Posts = async () => {
                         "}",
                 },
                 tags: [ "tag-1", "tag-2", "tag-3" ],
+                authors: [ "author-1", "author-2", "author-3" ],
                 comments: [
                     {
                         id: 1,
@@ -48,6 +49,7 @@ const Posts = async () => {
                     after: "After Code 2",
                 },
                 tags: [ "tag-1", "tag-2", "tag-3" ],
+                authors: [ "author-1", "author-2", "author-3" ],
                 comments: [
                     {
                         id: 1,
