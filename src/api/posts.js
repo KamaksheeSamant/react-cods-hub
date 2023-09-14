@@ -8,6 +8,8 @@ const Posts = async () => {
             {
                 id: 1,
                 title: "First Post",
+                prAuthor: "XYZ ABC",
+                commentAuthor: "ABC XYZ",
                 code: {
                     before: "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
                         "  return  questionIds.stream()\n" +
@@ -43,6 +45,8 @@ const Posts = async () => {
             {
                 id: 2,
                 title: "Second Post",
+                prAuthor: "XYZ ABC",
+                commentAuthor: "ABC XYZ",
                 code: {
                     before: "Before Code 2",
                     after: "After Code 2",
