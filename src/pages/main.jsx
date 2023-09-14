@@ -14,6 +14,11 @@ const LoaderWrapper = styled.div`
   height: 100vh;
   width: 100%;
 `;
+
+const Wrapper = styled.div`
+  background: #deebff;
+`;
+
 const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -34,20 +39,22 @@ const Main = () => {
   }, []);
 
   return (
-    <Stack alignInline="center">
-      {isLoading ? (
-        <LoaderWrapper>
-          <Spinner size={"xlarge"} />
-        </LoaderWrapper>
-      ) : (
-        <>
-          <AtlassianLogo appearance="brand" />
-          <PageHeader>Clean Coding Standards Hub</PageHeader>
-          {posts?.length &&
-            posts.map((post) => <Post key={post.id} post={post} />)}
-        </>
-      )}
-    </Stack>
+    <Wrapper>
+      <Stack alignInline="center">
+        {isLoading ? (
+          <LoaderWrapper>
+            <Spinner size={"xlarge"} />
+          </LoaderWrapper>
+        ) : (
+          <>
+            <AtlassianLogo appearance="brand" />
+            <PageHeader>Clean Coding Standards Hub</PageHeader>
+            {posts?.length &&
+              posts.map((post) => <Post key={post.id} post={post} />)}
+          </>
+        )}
+      </Stack>
+    </Wrapper>
   );
 };
 
