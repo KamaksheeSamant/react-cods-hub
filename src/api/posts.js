@@ -119,7 +119,6 @@ const modifyResponse = (data) => {
             {
                 id: 3,
                 title: "discard",
-                quantity: 0
             },
             {
                 id: 4,
