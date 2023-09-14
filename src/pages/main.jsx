@@ -28,8 +28,8 @@ const Main = () => {
                     <div>Loading</div> :
                     <>
                         {
-                            posts?.length && posts.map( post =>
-                                <Post key={post.id} post={post}/> )
+                            posts?.length && posts.map( (post, index) =>
+                                <Post key={index} post={post}/> )
                         }
                     </>
             }
