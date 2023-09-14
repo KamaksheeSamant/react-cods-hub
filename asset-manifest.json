@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/react-cods-hub/static/js/main.ad51eb72.js",
+    "main.js": "/react-cods-hub/static/js/main.c97e8ed3.js",
     "@atlaskit-internal_refractor-import.js": "/react-cods-hub/static/js/@atlaskit-internal_refractor-import.a6eeef61.chunk.js",
     "index.html": "/react-cods-hub/index.html",
-    "main.ad51eb72.js.map": "/react-cods-hub/static/js/main.ad51eb72.js.map",
+    "main.c97e8ed3.js.map": "/react-cods-hub/static/js/main.c97e8ed3.js.map",
     "@atlaskit-internal_refractor-import.a6eeef61.chunk.js.map": "/react-cods-hub/static/js/@atlaskit-internal_refractor-import.a6eeef61.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ad51eb72.js"
+    "static/js/main.c97e8ed3.js"
   ]
 }
