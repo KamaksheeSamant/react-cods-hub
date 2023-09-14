@@ -5,6 +5,16 @@ const Posts = async () => {
     const data = [
         {
             beforeCommitId: 1,
+            beforeCommitCode: "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
+                "  return  questionIds.stream()\n" +
+                "          .filter(questionId -> questionOverrides.stream().noneMatch(questionOverride -> questionId.equals(questionOverride))\n" +
+                "          .collect(Collectors.toList());\n" +
+                "}",
+            afterCommitCode: "private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {\n" +
+                "  return  questionIds.stream()\n" +
+                "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
+                "          .collect(Collectors.toList());\n" +
+                "}",
             afterCommitId: 2,
             commentId: 1,
             beforeLineNum: "2,5",
@@ -15,10 +25,48 @@ const Posts = async () => {
             codsUUId: "abcd-123-xyz",
             codsCreationDate: 123123,
             repositoryId: 12213,
-            sourceLanguage: "javascript"
+            sourceLanguage: "Java"
         },
         {
             beforeCommitId: 11,
+            beforeCommitCode: "for i, comment := range comments {\n" +
+                "\t\tvar userMeta *db.AtlassianOrgUser\n" +
+                "\t\tuser, exist := usersLookup[comment.UserID]" +
+                "if !exist {\n" +
+                "\t\t\tfor y, userCache := range usersCache {\n" +
+                "\t\t\t\tif userCache.UserID == comment.UserID {\n" +
+                "\t\t\t\t\tusersLookup[comment.UserID] = userCache\n" +
+                "\t\t\t\t\tuserMeta = &usersCache[y]\n" +
+                "\t\t\t\t\tbreak\n" +
+                "\t\t\t\t}\n" +
+                "\t\t\t}\n" +
+                "\t\t} else {\n" +
+                "\t\t\tuserMeta = &user\n" +
+                "\t\t}\n" +
+                "\t\tcommentsMeta[i] = reportCommentMeta{\n" +
+                "\t\t\tReportComment: comment,\n" +
+                "\t\t\tUserMeta:      userMeta,\n" +
+                "\t\t}\n" +
+                "\t}",
+            afterCommitCode: "for i, comment := range comments {\n" +
+                "\t\tvar userMeta *db.AtlassianOrgUser\n" +
+                "\t\tuser, exist := usersLookup[comment.UserID]" +
+                "if !exist {\n" +
+                "\t\t\tfor y, userCache := range usersCache {\n" +
+                "\t\t\t\tif userCache.UserID == comment.UserID {\n" +
+                "\t\t\t\t\tusersLookup[comment.UserID] = userCache\n" +
+                "\t\t\t\t\tuserMeta = &usersCache[y]\n" +
+                "\t\t\t\t\tbreak\n" +
+                "\t\t\t\t}\n" +
+                "\t\t\t}\n" +
+                "\t\t} else {\n" +
+                "\t\t\tuserMeta = &user\n" +
+                "\t\t}\n" +
+                "\t\tcommentsMeta[i] = reportCommentMeta{\n" +
+                "\t\t\tReportComment: comment,\n" +
+                "\t\t\tUserMeta:      userMeta,\n" +
+                "\t\t}\n" +
+                "\t}",
             afterCommitId: 21,
             commentId: 11,
             beforeLineNum: "1,3",
@@ -29,21 +77,30 @@ const Posts = async () => {
             codsUUId: "abcd-123-xyz1",
             codsCreationDate: 1231231,
             repositoryId: 122131,
-            sourceLanguage: "python"
+            sourceLanguage: "go"
         },
         {
             beforeCommitId: 12,
+            beforeCommitCode: "numberOfSyncedRepos === totalNumberOfRepos \n" +
+                "  ? totalNumberOfRepos \n" +
+                "  : (totalNumberOfRepos ? `${numberOfSyncedRepos} / ${totalNumberOfRepos}` : \"\");",
+            afterCommitCode: "if (!totalNumberOfRepos) return \"\";// If the total number of repos is 0, then show nothing\n" +
+                "if (numberOfSyncedRepos === totalNumberOfRepos) {\n" +
+                "  return totalNumberOfRepos;\n" +
+                "} else {\n" +
+                "  return `${numberOfSyncedRepos} / ${totalNumberOfRepos}`;\n" +
+                "}",
             afterCommitId: 22,
             commentId: 12,
-            beforeLineNum: "4",
+            beforeLineNum: "1,2,3",
             prId: 12,
-            afterLineNum: "4",
+            afterLineNum: "1,2,3,4,5,6",
             prAuthor: ["PR Author 2"],
             commentAuthor: ["Comment Author 2"],
             codsUUId: "abcd-123-xyz2",
             codsCreationDate: 1231232,
             repositoryId: 122132,
-            sourceLanguage: "go"
+            sourceLanguage: "javascript"
         }
     ];
 
@@ -56,20 +113,12 @@ const modifyResponse = (data) => {
             before: {
                 id: datum.beforeCommitId,
                 highlightedLines: datum.beforeLineNum,
-                codeSnippet: "private List<String> filterQuestionId(List<String> questionIds, List<String> questionOverrides) {\n" +
-                    "  return  questionIds.stream()\n" +
-                    "          .filter(questionId -> questionOverrides.stream().noneMatch(questionOverride -> questionId.equals(questionOverride))\n" +
-                    "          .collect(Collectors.toList());\n" +
-                    "}"
+                codeSnippet: datum.beforeCommitCode
             },
             after: {
                 id: datum.afterCommitId,
                 highlightedLines: datum.afterLineNum,
-                codeSnippet: "private List<String> filterQuestionId(List<String> questionIds, Set<String> questionOverrides) {\n" +
-                    "  return  questionIds.stream()\n" +
-                    "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
-                    "          .collect(Collectors.toList());\n" +
-                    "}"
+                codeSnippet: datum.afterCommitCode
             }
         },
         comment: {
