@@ -30,7 +30,6 @@ const ReactionsContainerStyles = xcss({
 
 const Post = ({ post }) => {
   const { tags, comment, reactions, code, authors } = post;
-  console.log("tags",post);
   return (
     <Box xcss={containerStyles}>
       <Flex>

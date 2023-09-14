@@ -8,9 +8,11 @@ const CodeStyle = styled.div`
   padding: 5px;
 `;
 
-const ok = xcss({
-  maxHeight: 'space.300',
-})
+const CodeBlockWrapper = styled.div`
+  span {
+    max-height: 150px;
+  }
+`;
 
 const headingStyles = xcss({
   marginBlock: "space.050",
@@ -23,25 +25,27 @@ const CodeSnippet = ({ code }) => {
         <Heading level="h500" xcss={headingStyles}>
           Before:
         </Heading>
-        <CodeBlock
-          xcss={ok}
-          language="jsx"
-          text={code.before.codeSnippet}
-          highlight={code.before.highlightedLines}
-          shouldWrapLongLines={true}
-        />
+        <CodeBlockWrapper>
+          <CodeBlock
+            language="jsx"
+            text={code.before.codeSnippet}
+            highlight={code.before.highlightedLines}
+            shouldWrapLongLines={true}
+          />
+        </CodeBlockWrapper>
       </CodeStyle>
       <CodeStyle>
         <Heading level="h500" xcss={headingStyles}>
           After:
         </Heading>
-        <CodeBlock
-          xcss={ok}
-          language="jsx"
-          text={code.after.codeSnippet}
-          highlight={code.after.highlightedLines}
-          shouldWrapLongLines={true}
-        />
+        <CodeBlockWrapper>
+          <CodeBlock
+            language="jsx"
+            text={code.after.codeSnippet}
+            highlight={code.after.highlightedLines}
+            shouldWrapLongLines={true}
+          />
+        </CodeBlockWrapper>
       </CodeStyle>
     </Flex>
   );
