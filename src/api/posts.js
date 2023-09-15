@@ -18,7 +18,7 @@ const getCode = (language, isBefore) => {
             "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
             "          .collect(Collectors.toList());\n" +
             "}";
-    case "java, junit":
+    case "java,junit":
       return isBefore ?
           "@Before\n" +
           "    public void setup() {\n" +
@@ -89,7 +89,7 @@ const getCode = (language, isBefore) => {
 
 const getComment = (language) => {
   switch (language) {
-    case "java, junit":
+    case "java,junit":
       return "/suggestion You can define this and just use @InjectMocks with the existing runner";
     default:
       return "The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?";
