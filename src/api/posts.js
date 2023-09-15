@@ -126,7 +126,7 @@ const modifyResponse = (data) => {
       content: getComment(datum.sourceLangauage)
     },
     prInfo: [
-      { title: "PR: repositoryId - ", value: datum.repositoryId },
+      { title: "PR: ", value: `${datum.repositoryId} - ${datum.prId}` },
       { title: "PR Author: ", value: datum.prAuthor },
       { title: "Comment Author: ", value: datum.commentAuthor },
     ],
