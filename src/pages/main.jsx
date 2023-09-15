@@ -1,11 +1,13 @@
 import Spinner from "@atlaskit/spinner";
 import { Stack } from "@atlaskit/primitives";
 import PageHeader from "@atlaskit/page-header";
-import { AtlassianLogo } from '@atlaskit/logo';
+import { AtlassianLogo } from "@atlaskit/logo";
 import Post from "../components/post";
+// import Filter from "../components/filter";
 import { useEffect, useState } from "react";
 import Api from "../api";
 import { styled } from "styled-components";
+
 
 const LoaderWrapper = styled.div`
   display: flex;
@@ -50,6 +52,7 @@ const Main = () => {
           <>
             <AtlassianLogo appearance="brand" />
             <PageHeader>Clean Coding Standards Hub</PageHeader>
+            {/* {posts.length > 0  && <Filter/>} */}
             {posts?.length &&
               posts.map((post) => <Post key={post.id} post={post} />)}
           </>

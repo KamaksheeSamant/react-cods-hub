@@ -1,9 +1,9 @@
 import React from "react";
 import Badge from "@atlaskit/badge";
-import {styled} from "styled-components";
-import {BiDislike, BiLike} from "react-icons/bi";
-import {IoTrashOutline} from "react-icons/io5";
-import {GoCommentDiscussion} from "react-icons/go";
+import { styled } from "styled-components";
+import { BiDislike, BiLike } from "react-icons/bi";
+import { BiArchiveIn } from "react-icons/bi";
+import { GoCommentDiscussion } from "react-icons/go";
 
 const ReactionWrapper = styled.div`
   display: flex;
@@ -15,9 +15,9 @@ const ReactionWrapper = styled.div`
 `;
 
 const iconStyles = {
-    height: "25px",
-    width: "25px",
-    color: "#5E6C84",
+  height: "25px",
+  width: "25px",
+  color: "#5E6C84",
 };
 
 const badgeStyles = {
@@ -27,20 +27,21 @@ const badgeStyles = {
 };
 
 const getIcon = (title) => {
-    switch (title) {
-        case "like":
-            return <BiLike style={iconStyles} title={title} />;
-        case "dislike":
-            return <BiDislike style={iconStyles} title={title} />;
-        case "discard":
-            return <IoTrashOutline style={iconStyles} title={title} />;
-        case "discuss":
-            return <GoCommentDiscussion style={iconStyles} title={title} />;
-    }
+  // eslint-disable-next-line default-case
+  switch (title) {
+    case "like":
+      return <BiLike style={iconStyles} title={title} />;
+    case "dislike":
+      return <BiDislike style={iconStyles} title={title} />;
+    case "discard":
+      return <BiArchiveIn style={iconStyles} title={title} />;
+    case "discuss":
+      return <GoCommentDiscussion style={iconStyles} title={title} />;
+  }
 };
 
 const Reaction = ({ reaction }) => {
-    const { title, quantity } = reaction;
+  const { title, quantity } = reaction;
 
     return (
         <>

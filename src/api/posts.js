@@ -99,6 +99,7 @@ const getComment = (language) => {
 const Posts = async () => {
   try {
     const response = await axios.get(URL);
+    console.log(JSON.parse(response.data.body));
     return modifyResponse(JSON.parse(response.data.body));
   } catch (e) {
     throw e;
@@ -124,9 +125,10 @@ const modifyResponse = (data) => {
       id: datum.commentId,
       content: getComment(datum.sourceLangauage)
     },
-    authors: [
-        { title: "PR Author", name: datum.prAuthor },
-        { title: "Comment Author", name: datum.commentAuthor },
+    prInfo: [
+      { title: "PR: repositoryId - ", value: datum.repositoryId },
+      { title: "PR Author: ", value: datum.prAuthor },
+      { title: "Comment Author: ", value: datum.commentAuthor },
     ],
     tags: datum.sourceLangauage.split(","),
     reactions: [
