@@ -18,6 +18,17 @@ const getCode = (language, isBefore) => {
             "          .filter(questionId -> !questionOverrides.contains(questionId))\n" +
             "          .collect(Collectors.toList());\n" +
             "}";
+    case "java, junit":
+      return isBefore ?
+          "@Before\n" +
+          "    public void setup() {\n" +
+          "        issueCommentedTriggerExecutor = new IssueCommentedTriggerExecutor(issueEventMatcher,\n" +
+          "                componentIssueResolver,\n" +
+          "                smartIssueInputPopulator,\n" +
+          "                tenantService);\n" +
+          "    }" :
+          "  @InjectMocks\n" +
+          "    private IssueCommentedTriggerExecutor issueCommentedTriggerExecutor;\n";
     case "python":
       return isBefore
         ? "for i, comment := range comments {\n" +
@@ -62,7 +73,7 @@ const getCode = (language, isBefore) => {
       return isBefore ? "before" : "after";
     case "c#":
       return isBefore ? "before" : "after";
-    case "javascript":
+    case "node":
       return isBefore
         ? "numberOfSyncedRepos === totalNumberOfRepos \n" +
             "  ? totalNumberOfRepos \n" +
@@ -76,6 +87,15 @@ const getCode = (language, isBefore) => {
   }
 };
 
+const getComment = (language) => {
+  switch (language) {
+    case "java, junit":
+      return "/suggestion You can define this and just use @InjectMocks with the existing runner";
+    default:
+      return "The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?";
+  }
+}
+
 const Posts = async () => {
   try {
     const response = await axios.get(URL);
@@ -85,6 +105,7 @@ const Posts = async () => {
     throw e;
   }
 };
+
 
 const modifyResponse = (data) => {
   return data.map((datum) => ({
@@ -102,15 +123,14 @@ const modifyResponse = (data) => {
     },
     comment: {
       id: datum.commentId,
-      content:
-        "The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?",
+      content: getComment(datum.sourceLangauage)
     },
     prInfo: [
       { title: "PR: ", value: `${datum.repositoryId} - ${datum.prId}` },
       { title: "PR Author: ", value: datum.prAuthor },
       { title: "Comment Author: ", value: datum.commentAuthor },
     ],
-    tags: [datum.sourceLangauage],
+    tags: datum.sourceLangauage.split(","),
     reactions: [
       {
         id: 1,
