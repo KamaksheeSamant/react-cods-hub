@@ -92,7 +92,7 @@ const modifyResponse = (data) => {
       before: {
         id: datum.beforeCommitId,
         highlightedLines: datum.beforeLineNum,
-        codeSnippet: getCode(datum.sourceLangauage),
+        codeSnippet: getCode(datum.sourceLangauage, true),
       },
       after: {
         id: datum.afterCommitId,

@@ -1,18 +1,13 @@
 import Spinner from "@atlaskit/spinner";
-import { Flex, Stack } from "@atlaskit/primitives";
+import { Stack } from "@atlaskit/primitives";
 import PageHeader from "@atlaskit/page-header";
 import { AtlassianLogo } from "@atlaskit/logo";
 import Post from "../components/post";
+// import Filter from "../components/filter";
 import { useEffect, useState } from "react";
 import Api from "../api";
 import { styled } from "styled-components";
 
-const PageHeaderWrapper = styled(PageHeader)`
-  & div > div > div > h1 {
-    color: blue;
-    font-size: 24px;
-  }
-`;
 
 const LoaderWrapper = styled.div`
   display: flex;
@@ -21,6 +16,12 @@ const LoaderWrapper = styled.div`
   height: 100vh;
   width: 100%;
 `;
+
+const Wrapper = styled.div`
+  background: #deebff;
+  padding-top: 24px;
+`;
+
 const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -41,20 +42,23 @@ const Main = () => {
   }, []);
 
   return (
-    <Stack alignInline="center">
-      {isLoading ? (
-        <LoaderWrapper>
-          <Spinner size={"xlarge"} />
-        </LoaderWrapper>
-      ) : (
-        <>
-          <AtlassianLogo appearance="brand" />
-          <PageHeaderWrapper>Clean Coding Standards Hub</PageHeaderWrapper>
-          {posts?.length &&
-            posts.map((post) => <Post key={post.id} post={post} />)}
-        </>
-      )}
-    </Stack>
+    <Wrapper>
+      <Stack alignInline="center">
+        {isLoading ? (
+          <LoaderWrapper>
+            <Spinner size={"xlarge"} />
+          </LoaderWrapper>
+        ) : (
+          <>
+            <AtlassianLogo appearance="brand" />
+            <PageHeader>Clean Coding Standards Hub</PageHeader>
+            {/* {posts.length > 0  && <Filter/>} */}
+            {posts?.length &&
+              posts.map((post) => <Post key={post.id} post={post} />)}
+          </>
+        )}
+      </Stack>
+    </Wrapper>
   );
 };
 
