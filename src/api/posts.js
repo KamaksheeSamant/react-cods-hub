@@ -106,7 +106,7 @@ const modifyResponse = (data) => {
         "The code snippet provided is functional but has a potential performance issue due to nested iterations. This can result in a time complexity of O(n * m). Can we improve this to O(N+M) if we use set here for itemOverrides?",
     },
     prInfo: [
-      { title: "PR: repositoryId - ", value: datum.repositoryId },
+      { title: "PR: ", value: `${datum.repositoryId} - ${datum.prId}` },
       { title: "PR Author: ", value: datum.prAuthor },
       { title: "Comment Author: ", value: datum.commentAuthor },
     ],
