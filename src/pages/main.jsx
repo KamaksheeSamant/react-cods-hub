@@ -7,7 +7,12 @@ import Post from "../components/post";
 import { useEffect, useState } from "react";
 import Api from "../api";
 import { styled } from "styled-components";
+import EmptyImg from "../assets/empty.png";
 
+const EmptyScreen = styled.img`
+  padding: 50px 0;
+  height: calc(100vh - 240px);
+`;
 
 const LoaderWrapper = styled.div`
   display: flex;
@@ -53,8 +58,11 @@ const Main = () => {
             <AtlassianLogo appearance="brand" />
             <PageHeader>Clean Coding Standards Hub</PageHeader>
             {/* {posts.length > 0  && <Filter/>} */}
-            {posts?.length &&
-              posts.map((post) => <Post key={post.id} post={post} />)}
+            {
+              posts?.length ?
+                  posts.map((post) => <Post key={post.id} post={post} />) :
+                  <EmptyScreen src={EmptyImg} />
+            }
           </>
         )}
       </Stack>
