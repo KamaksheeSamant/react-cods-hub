@@ -10,7 +10,7 @@ const flexStyle = xcss({
 const Tags = ({ tags }) => {
   return (
     <Flex alignItems="center" xcss={flexStyle}>
-      <span>Tags: </span>
+      <span>Tags:: </span>
       <TagGroup alignment="start">
         {tags.map((tag, index) => (
           <SimpleTag key={index} text={tag} />
