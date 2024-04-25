@@ -2,6 +2,8 @@ on: push
 jobs:
   first-job:
     runs-on: windows-latest
+    env:
+      dev: Development
     steps:
       - name: Check Node.js version
         run: node --version
