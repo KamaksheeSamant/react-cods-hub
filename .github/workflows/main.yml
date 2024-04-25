@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: prod
     steps:
       - name: Create text file
         run: echo "Build step" > build.txt
@@ -20,6 +22,8 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: prod
     steps:
       - name: Create text file
         run: echo "Deploy step" > deploy.txt
