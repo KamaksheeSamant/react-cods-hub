@@ -1,20 +1,27 @@
-on: push
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create text file
+        run: echo "Build step" > build.txt
+      - name: Print build message
+        run: cat build.txt
+      - name: Trigger deploy
+        run: |
+          # You can trigger the deploy process here, for example by calling an API or running a deploy script
+
   deploy:
-    runs-on: windows-latest
-    env:
-      dev: Development
+    needs: build
+    runs-on: ubuntu-latest
     steps:
-      - name: Check Node.js version
-        run: node --version
-      - name: Check npm version
-        run: npm --version
-  first-job:
-    runs-on: windows-latest
-    env:
-      dev: Development
-    steps:
-      - name: Check Node.js version
-        run: node --version
-      - name: Check npm version
-        run: npm --version
+      - name: Create text file
+        run: echo "Deploy step" > deploy.txt
+      - name: Print deploy message
+        run: cat deploy.txt
