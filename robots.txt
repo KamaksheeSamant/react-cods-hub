@@ -2,3 +2,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+i am one
+i am two
+i am theree 
+i am four
